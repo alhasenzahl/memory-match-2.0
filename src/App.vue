@@ -1,33 +1,33 @@
 <template>
-  <div>
-    <div class="container">
-      <header>
-          <h1>Matching Game</h1>
-      </header>
+    <div>
+        <div class="container">
+            <header>
+                <h1>Matching Game</h1>
+            </header>
 
-      <section class="score-panel">
-        <ul class="stars">
-          <Star />
-          <Star />
-          <Star />
-        </ul>
-        <span class="moves">0</span> Moves
+            <section class="score-panel">
+                <ul class="stars">
+                    <Star />
+                    <Star />
+                    <Star />
+                </ul>
+                <span class="moves">0</span> Moves
 
-          <div class="restart">
-          <i class="fa fa-repeat"></i>
+                <div class="restart">
+                    <i class="fa fa-repeat"></i>
+                </div>
+            </section>
+            <section>
+                <span id="stop-watch">00:00</span>
+            </section>
+            <ul class="deck">
+                <li class="card" :key="card.key" v-for="card in cards">
+                    <i :class="card.symbol"></i>
+                </li>
+            </ul>
         </div>
-      </section>
-      <section>
-          <span id="stop-watch">00:00</span>
-      </section>
-      <ul class="deck">
-        <li class="card" :key="card.key" v-for="card in cards">
-          <i :class="card.symbol"></i>
-        </li>
-      </ul>
+        <Modal />
     </div>
-    <Modal />
-  </div>
 </template>
 
 <script>
@@ -36,46 +36,42 @@ import Star from './components/Star.vue'
 import Modal from './components/Modal.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Star,
-    Modal,
-    // Card
-  },
-  data: () => {
-    return {
-      cards: [
-        { symbol: 'fa fa-anchor', key: 1 },
-        { symbol: 'fa fa-anchor', key: 2 },
-        { symbol: 'fa fa-bomb', key: 3 },
-        { symbol: 'fa fa-bomb', key: 4 },
-        { symbol: 'fa fa-bicycle', key: 5 },
-        { symbol: 'fa fa-bicycle', key: 6 },
-        { symbol: 'fa fa-diamond', key: 7 },
-        { symbol: 'fa fa-diamond', key: 8 },
-        { symbol: 'fa fa-paper-plane-o', key: 9 },
-        { symbol: 'fa fa-paper-plane-o', key: 10 },
-        { symbol: 'fa fa-cube', key: 11 },
-        { symbol: 'fa fa-cube', key: 12 },
-        { symbol: 'fa fa-leaf', key: 13 },
-        { symbol: 'fa fa-leaf', key: 14 },
-        { symbol: 'fa fa-bolt', key: 15 },
-        { symbol: 'fa fa-bolt', key: 16 }
-      ]
+    name: 'App',
+    components: {
+        Star,
+        Modal,
+        // Card
+    },
+    data: () => {
+        return {
+            cards: [
+                { symbol: 'fa fa-anchor', key: 1 },
+                { symbol: 'fa fa-anchor', key: 2 },
+                { symbol: 'fa fa-bomb', key: 3 },
+                { symbol: 'fa fa-bomb', key: 4 },
+                { symbol: 'fa fa-bicycle', key: 5 },
+                { symbol: 'fa fa-bicycle', key: 6 },
+                { symbol: 'fa fa-diamond', key: 7 },
+                { symbol: 'fa fa-diamond', key: 8 },
+                { symbol: 'fa fa-paper-plane-o', key: 9 },
+                { symbol: 'fa fa-paper-plane-o', key: 10 },
+                { symbol: 'fa fa-cube', key: 11 },
+                { symbol: 'fa fa-cube', key: 12 },
+                { symbol: 'fa fa-leaf', key: 13 },
+                { symbol: 'fa fa-leaf', key: 14 },
+                { symbol: 'fa fa-bolt', key: 15 },
+                { symbol: 'fa fa-bolt', key: 16 }
+            ]
+        }
     }
-  }
 }
 </script>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 html {
     box-sizing: border-box;
 }

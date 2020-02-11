@@ -20,10 +20,10 @@
 
 <script>
 export default {
-  name: 'Modal',
-  props: {
-    msg: String
-  }
+    name: 'Modal',
+    props: {
+        msg: String
+    }
 }
 </script>
 

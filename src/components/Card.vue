@@ -1,13 +1,13 @@
 <template>
-  <li class="card"><i class="fa fa-anchor"></i></li>
+    <li class="card"><i class="fa fa-anchor"></i></li>
 </template>
 
 <script>
 export default {
-  name: 'Card',
-  // props: {
-  //   card: Array
-  // }
+    name: 'Card',
+    // props: {
+    //     card: Array
+    // }
 }
 </script>
 

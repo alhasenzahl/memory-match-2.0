@@ -1,10 +1,10 @@
 <template>
-  <li class="star-icon"><i class="fa fa-star"></i></li>
+    <li class="star-icon"><i class="fa fa-star"></i></li>
 </template>
 
 <script>
 export default {
-  name: 'Star'
+    name: 'Star'
 }
 </script>
 
