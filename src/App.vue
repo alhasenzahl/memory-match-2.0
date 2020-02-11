@@ -21,7 +21,7 @@
                 <span id="stop-watch">00:00</span>
             </section>
             <ul class="deck">
-                <li class="card" :key="card.key" v-for="card in cards">
+                <li class="card" :class="{'open': card.isOpen, 'show': card.isShown}" :key="card.key" v-for="card in cards" @click="flipCards(card)">
                     <i :class="card.symbol"></i>
                 </li>
             </ul>
@@ -45,23 +45,23 @@ export default {
     data: () => {
         return {
             cards: [
-                { symbol: 'fa fa-anchor', key: 1 },
-                { symbol: 'fa fa-anchor', key: 2 },
-                { symbol: 'fa fa-bomb', key: 3 },
-                { symbol: 'fa fa-bomb', key: 4 },
-                { symbol: 'fa fa-bicycle', key: 5 },
-                { symbol: 'fa fa-bicycle', key: 6 },
-                { symbol: 'fa fa-diamond', key: 7 },
-                { symbol: 'fa fa-diamond', key: 8 },
-                { symbol: 'fa fa-paper-plane-o', key: 9 },
-                { symbol: 'fa fa-paper-plane-o', key: 10 },
-                { symbol: 'fa fa-cube', key: 11 },
-                { symbol: 'fa fa-cube', key: 12 },
-                { symbol: 'fa fa-leaf', key: 13 },
-                { symbol: 'fa fa-leaf', key: 14 },
-                { symbol: 'fa fa-bolt', key: 15 },
-                { symbol: 'fa fa-bolt', key: 16 }
-            ]
+                { symbol: 'fa fa-anchor', key: 1, isOpen: false, isShown: false },
+                { symbol: 'fa fa-anchor', key: 2, isOpen: false, isShown: false },
+                { symbol: 'fa fa-bomb', key: 3, isOpen: false, isShown: false },
+                { symbol: 'fa fa-bomb', key: 4, isOpen: false, isShown: false },
+                { symbol: 'fa fa-bicycle', key: 5, isOpen: false, isShown: false },
+                { symbol: 'fa fa-bicycle', key: 6, isOpen: false, isShown: false },
+                { symbol: 'fa fa-diamond', key: 7, isOpen: false, isShown: false },
+                { symbol: 'fa fa-diamond', key: 8, isOpen: false, isShown: false },
+                { symbol: 'fa fa-paper-plane-o', key: 9, isOpen: false, isShown: false },
+                { symbol: 'fa fa-paper-plane-o', key: 10, isOpen: false, isShown: false },
+                { symbol: 'fa fa-cube', key: 11, isOpen: false, isShown: false },
+                { symbol: 'fa fa-cube', key: 12, isOpen: false, isShown: false},
+                { symbol: 'fa fa-leaf', key: 13, isOpen: false, isShown: false },
+                { symbol: 'fa fa-leaf', key: 14, isOpen: false, isShown: false },
+                { symbol: 'fa fa-bolt', key: 15, isOpen: false, isShown: false },
+                { symbol: 'fa fa-bolt', key: 16, isOpen: false, isShown: false }
+            ],
         }
     },
     created() {
@@ -80,6 +80,22 @@ export default {
             }
 
             return array;
+        },
+        flipCards(card) {
+            // IF card isn't OPEN, SHOWN, or MATCHED 
+            if (! card.isOpen && !card.isShown) {
+                card.isOpen = ! card.isOpen;
+                card.isShown = ! card.isShown;
+            }
+                // Start timer
+                // Push card into openCards array
+
+                // IF openCards array length is 2 or less
+                    // Add OPEN and SHOWN to card
+                    // push card to clickedCards array
+                    // call matchCards() function
+                    // call clickCounter() function
+                    // call starCount() function
         }
     }
 }
