@@ -63,6 +63,24 @@ export default {
                 { symbol: 'fa fa-bolt', key: 16 }
             ]
         }
+    },
+    created() {
+        this.shuffle(this.cards);
+    },
+    methods: {
+        shuffle(array) {
+            let currentIndex = array.length, temporaryValue, randomIndex;
+
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
     }
 }
 </script>
