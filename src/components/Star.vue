@@ -4,10 +4,7 @@
 
 <script>
 export default {
-  name: 'Star',
-  props: {
-    msg: String
-  }
+  name: 'Star'
 }
 </script>
 
