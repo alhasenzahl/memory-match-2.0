@@ -63,7 +63,8 @@ export default {
                 { symbol: 'fa fa-bolt', key: 16, isOpen: false, isShown: false, isMatched: false }
             ],
             openCards: [],
-            clickedCards: []
+            clickedCards: [],
+            matchedCards: []
         }
     },
     created() {
@@ -83,6 +84,42 @@ export default {
 
             return array;
         },
+        matchCards() {
+            // IF openCards length is equal to 2
+            if (this.openCards.length === 2) {
+                setTimeout(() => {
+                    let cardOne = this.openCards[0];
+                    let cardTwo = this.openCards[1];
+
+                    if (cardOne.symbol === cardTwo.symbol) {
+                        cardOne.isOpen = ! cardOne.isOpen;
+                        cardTwo.isOpen = ! cardTwo.isOpen;
+                        cardOne.isMatched = ! cardOne.isMatched;
+                        cardTwo.isMatched = ! cardTwo.isMatched;
+                        this.matchedCards.push(cardOne, cardTwo);
+                    } else {
+                        cardOne.isOpen = ! cardOne.isOpen;
+                        cardTwo.isOpen = ! cardTwo.isOpen;
+                        cardOne.isShown = ! cardOne.isShown;
+                        cardTwo.isShown = ! cardTwo.isShown;
+                    }
+
+                    this.openCards = [];
+                }, 1000);
+            }
+            // Add a one sec timeout to the rest of this
+                // grab first and second card from openCards
+                // for each of those cards
+                    // if they match each other
+                        // remove open
+                        // add matched
+                        // put card in matchedCards
+                        // call wonGame() function
+                    // else 
+                        // remove open and show
+                    
+                    // return openCards to empty array
+        },
         flipCards(card) {
             // IF card isn't OPEN, SHOWN, or MATCHED 
             if (! card.isOpen && ! card.isShown && ! card.isMatched) {
@@ -98,6 +135,7 @@ export default {
                     // push card to clickedCards array
                     this.clickedCards.push(card);
                     // call matchCards() function
+                    this.matchCards();
                     // call clickCounter() function
                     // call starCount() function
                 }
