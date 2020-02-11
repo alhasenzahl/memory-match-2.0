@@ -21,22 +21,9 @@
           <span id="stop-watch">00:00</span>
       </section>
       <ul class="deck">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <li class="card" :key="card.key" v-for="card in cards">
+          <i :class="card.symbol"></i>
+        </li>
       </ul>
     </div>
     <Modal />
@@ -45,7 +32,7 @@
 
 <script>
 import Star from './components/Star.vue'
-import Card from './components/Card.vue'
+// import Card from './components/Card.vue'
 import Modal from './components/Modal.vue'
 
 export default {
@@ -53,7 +40,29 @@ export default {
   components: {
     Star,
     Modal,
-    Card
+    // Card
+  },
+  data: () => {
+    return {
+      cards: [
+        { symbol: 'fa fa-anchor', key: 1 },
+        { symbol: 'fa fa-anchor', key: 2 },
+        { symbol: 'fa fa-bomb', key: 3 },
+        { symbol: 'fa fa-bomb', key: 4 },
+        { symbol: 'fa fa-bicycle', key: 5 },
+        { symbol: 'fa fa-bicycle', key: 6 },
+        { symbol: 'fa fa-diamond', key: 7 },
+        { symbol: 'fa fa-diamond', key: 8 },
+        { symbol: 'fa fa-paper-plane-o', key: 9 },
+        { symbol: 'fa fa-paper-plane-o', key: 10 },
+        { symbol: 'fa fa-cube', key: 11 },
+        { symbol: 'fa fa-cube', key: 12 },
+        { symbol: 'fa fa-leaf', key: 13 },
+        { symbol: 'fa fa-leaf', key: 14 },
+        { symbol: 'fa fa-bolt', key: 15 },
+        { symbol: 'fa fa-bolt', key: 16 }
+      ]
+    }
   }
 }
 </script>
@@ -120,7 +129,7 @@ h1 {
     margin: 0 0 3em;
 }
 
-/* .deck .card {
+.deck .card {
     height: 125px;
     width: 125px;
     background: #2e3d49;
@@ -148,7 +157,7 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
-} */
+}
 
 /*
  * Styles for the Score Panel
