@@ -20,7 +20,24 @@
       <section>
           <span id="stop-watch">00:00</span>
       </section>
-      <ul class="deck"></ul>
+      <ul class="deck">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </ul>
     </div>
     <Modal />
   </div>
@@ -28,7 +45,7 @@
 
 <script>
 import Star from './components/Star.vue'
-// import Card from './components/Card.vue'
+import Card from './components/Card.vue'
 import Modal from './components/Modal.vue'
 
 export default {
@@ -36,7 +53,7 @@ export default {
   components: {
     Star,
     Modal,
-    // Card
+    Card
   }
 }
 </script>
@@ -103,7 +120,7 @@ h1 {
     margin: 0 0 3em;
 }
 
-.deck .card {
+/* .deck .card {
     height: 125px;
     width: 125px;
     background: #2e3d49;
@@ -131,7 +148,7 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
-}
+} */
 
 /*
  * Styles for the Score Panel
