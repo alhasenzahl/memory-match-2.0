@@ -85,7 +85,6 @@ export default {
             return array;
         },
         matchCards() {
-            // IF openCards length is equal to 2
             if (this.openCards.length === 2) {
                 setTimeout(() => {
                     let cardOne = this.openCards[0];
@@ -96,7 +95,9 @@ export default {
                         cardTwo.isOpen = ! cardTwo.isOpen;
                         cardOne.isMatched = ! cardOne.isMatched;
                         cardTwo.isMatched = ! cardTwo.isMatched;
+
                         this.matchedCards.push(cardOne, cardTwo);
+                        this.wonGame();
                     } else {
                         cardOne.isOpen = ! cardOne.isOpen;
                         cardTwo.isOpen = ! cardTwo.isOpen;
@@ -104,37 +105,32 @@ export default {
                         cardTwo.isShown = ! cardTwo.isShown;
                     }
 
+                    // return openCards to empty array for next turn
                     this.openCards = [];
                 }, 1000);
             }
-            // Add a one sec timeout to the rest of this
-                // grab first and second card from openCards
-                // for each of those cards
-                    // if they match each other
-                        // remove open
-                        // add matched
-                        // put card in matchedCards
-                        // call wonGame() function
-                    // else 
-                        // remove open and show
-                    
-                    // return openCards to empty array
+        },
+        wonGame() {
+            // IF matchedCards length is equal to 16
+            if (this.matchedCards.length === 16) {
+                console.log('you won');
+            }
+                // call stopTimer() function
+                // add a 2.5 sec setTimeout to the rest of this
+                    // call showModal() function
+                    // add click listeners to play again and quit buttons on modal
         },
         flipCards(card) {
-            // IF card isn't OPEN, SHOWN, or MATCHED 
             if (! card.isOpen && ! card.isShown && ! card.isMatched) {
                 // Start timer
-                // Push card into openCards array
                 this.openCards.push(card);
 
-                // IF openCards array length is 2 or less
                 if (this.openCards.length <= 2) {
-                    // Add OPEN and SHOWN to card
                     card.isOpen = ! card.isOpen;
                     card.isShown = ! card.isShown;
-                    // push card to clickedCards array
+
                     this.clickedCards.push(card);
-                    // call matchCards() function
+                    
                     this.matchCards();
                     // call clickCounter() function
                     // call starCount() function
