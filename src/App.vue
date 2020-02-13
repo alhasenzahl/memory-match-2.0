@@ -144,6 +144,8 @@ export default {
         },
         matchCards() {
             if (this.openCards.length === 2) {
+                this.clickCounter++;
+                
                 setTimeout(() => {
                     let cardOne = this.openCards[0];
                     let cardTwo = this.openCards[1];
@@ -186,8 +188,6 @@ export default {
                 if (this.openCards.length <= 2) {
                     card.isOpen = ! card.isOpen;
                     card.isShown = ! card.isShown;
-
-                    this.clickCounter++;
                     
                     this.matchCards();
                     // call starCount() function
