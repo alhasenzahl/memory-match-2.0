@@ -7,9 +7,13 @@
 
             <section class="score-panel">
                 <ul class="stars">
-                    <Star />
-                    <Star />
-                    <Star />
+                    <li
+                        class="star-icon"
+                        :key="star.key"
+                        v-for="star in stars"
+                    >
+                        <i :class="star.symbol" v-if="star.isShown"></i>
+                    </li>
                 </ul>
                 <span class="moves">{{ clickCounter }}</span> Moves
 
@@ -57,17 +61,17 @@
 </template>
 
 <script>
-import Star from './components/Star.vue'
+// import Star from './components/Star.vue'
 // import Card from './components/Card.vue'
 // import Modal from './components/Modal.vue'
 
 export default {
     name: 'App',
-    components: {
-        Star
-        // Modal,
-        // Card
-    },
+    // components: {
+    //     Star
+    //     // Modal,
+    //     // Card
+    // },
     data: () => {
         return {
             cards: [
@@ -87,6 +91,11 @@ export default {
                 { symbol: 'fa fa-leaf', key: 14, isOpen: false, isShown: false, isMatched: false },
                 { symbol: 'fa fa-bolt', key: 15, isOpen: false, isShown: false, isMatched: false },
                 { symbol: 'fa fa-bolt', key: 16, isOpen: false, isShown: false, isMatched: false }
+            ],
+            stars: [
+                { symbol: 'fa fa-star', key: 1, isShown: true },
+                { symbol: 'fa fa-star', key: 2, isShown: true },
+                { symbol: 'fa fa-star', key: 3, isShown: true },
             ],
             openCards: [],
             matchedCards: [],
@@ -160,7 +169,6 @@ export default {
         },
         wonGame() {
             if (this.matchedCards.length === 16) {
-                console.log('you won');
                 setTimeout(() => {
                     this.showModal = ! this.showModal;
                 }, 1000);
@@ -310,6 +318,11 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.star-icon {
+    list-style: none;
+    display: inline-block;
 }
 
 
