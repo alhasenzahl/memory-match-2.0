@@ -1,17 +1,17 @@
 <template>
-    <div class="modal-background hide">
+    <div class="modal-background" v-if="showModal">
         <div class="modal-body">
             <div class="modal-body_container">
                 <div class="modal-heading">
                     <h2 class="modal-title">Game Stats</h2>
                 </div>
                 <div class="modal-main">
-                    <h3 class="modal-main_title"></h3>
-                    <p class="modal-main_paragraph"></p>
+                    <h3 class="modal-main_title">Title</h3>
+                    <p class="modal-main_paragraph">Message</p>
                 </div>
                 <div class="modal-buttons">
-                    <button class="quit-game">Quit</button>
-                    <button class="play-again">Play Again</button>
+                    <button class="quit-game" @click="$emit(toggleModal())">Quit</button>
+                    <button class="play-again" @click="$emit(restartGame())">Play Again</button>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
 export default {
     name: 'Modal',
     props: {
-        msg: String
+        showModal: Boolean
     }
 }
 </script>

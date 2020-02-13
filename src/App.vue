@@ -11,35 +11,61 @@
                     <Star />
                     <Star />
                 </ul>
-                <span class="moves">0</span> Moves
+                <span class="moves">{{ clickCounter }}</span> Moves
 
                 <div class="restart">
-                    <i class="fa fa-repeat"></i>
+                    <i class="fa fa-repeat" @click="restartGame()"></i>
                 </div>
             </section>
             <section>
                 <span id="stop-watch">00:00</span>
             </section>
             <ul class="deck">
-                <li class="card" :class="{'open': card.isOpen, 'show': card.isShown, 'match': card.isMatched}" :key="card.key" v-for="card in cards" @click="flipCards(card)">
+                <li 
+                    class="card" 
+                    :class="{
+                        'open': card.isOpen,
+                        'show': card.isShown,
+                        'match': card.isMatched
+                    }" 
+                    :key="card.key" 
+                    v-for="card in cards" 
+                    @click="flipCards(card)"
+                >
                     <i :class="card.symbol"></i>
                 </li>
             </ul>
         </div>
-        <Modal />
+        <div class="modal-background" v-if="showModal">
+            <div class="modal-body">
+                <div class="modal-body_container">
+                    <div class="modal-heading">
+                        <h2 class="modal-title">Game Stats</h2>
+                    </div>
+                    <div class="modal-main">
+                        <h3 class="modal-main_title">Title</h3>
+                        <p class="modal-main_paragraph">Message</p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button class="quit-game" @click="toggleModal()">Quit</button>
+                        <button class="play-again" @click="restartGame()">Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import Star from './components/Star.vue'
 // import Card from './components/Card.vue'
-import Modal from './components/Modal.vue'
+// import Modal from './components/Modal.vue'
 
 export default {
     name: 'App',
     components: {
-        Star,
-        Modal,
+        Star
+        // Modal,
         // Card
     },
     data: () => {
@@ -63,8 +89,9 @@ export default {
                 { symbol: 'fa fa-bolt', key: 16, isOpen: false, isShown: false, isMatched: false }
             ],
             openCards: [],
-            clickedCards: [],
-            matchedCards: []
+            matchedCards: [],
+            clickCounter: 0,
+            showModal: false
         }
     },
     created() {
@@ -83,6 +110,28 @@ export default {
             }
 
             return array;
+        },
+        restartGame() {
+            if (this.showModal) {
+                this.showModal = ! this.showModal;
+            }
+
+            this.openCards.forEach((card) => {
+                card.isOpen = ! card.isOpen;
+                card.isShown = ! card.isShown;
+            });
+
+            this.matchedCards.forEach((card) => {
+                card.isMatched = ! card.isMatched;
+                card.isShown = ! card.isShown;
+            });
+
+            // call resetStars() function
+            this.clickCounter = 0;
+            this.matchedCards = [];
+            this.openCards = [];
+            // timer goes back to 0
+            // refresh page function call??
         },
         matchCards() {
             if (this.openCards.length === 2) {
@@ -105,15 +154,16 @@ export default {
                         cardTwo.isShown = ! cardTwo.isShown;
                     }
 
-                    // return openCards to empty array for next turn
                     this.openCards = [];
                 }, 1000);
             }
         },
         wonGame() {
-            // IF matchedCards length is equal to 16
             if (this.matchedCards.length === 16) {
                 console.log('you won');
+                setTimeout(() => {
+                    this.showModal = ! this.showModal;
+                }, 1000);
             }
                 // call stopTimer() function
                 // add a 2.5 sec setTimeout to the rest of this
@@ -129,14 +179,25 @@ export default {
                     card.isOpen = ! card.isOpen;
                     card.isShown = ! card.isShown;
 
-                    this.clickedCards.push(card);
+                    this.clickCounter++;
                     
                     this.matchCards();
-                    // call clickCounter() function
                     // call starCount() function
                 }
             }
-        }
+        },
+        toggleModal() {
+            this.showModal = ! this.showModal;
+            // Change style to display: block to show modal
+            // create variable for time element.innerHTML
+
+            // IF starCount is 3
+                // set message text for this score
+            // IF starCount is 2
+                // set message text for this score
+            // IF starCount is 1
+                // set message text for this score
+        },
     }
 }
 </script>
@@ -249,5 +310,98 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+
+
+
+.modal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.438);
+}
+
+.modal-body {
+    position: relative;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+
+.modal-body_container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    order: 1;
+}
+
+.modal-title {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.modal-main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    order: 2;
+    flex-direction: column;
+    border-bottom: 1px solid gray;
+}
+
+.modal-main_title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.modal-main_paragraph {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    order: 3;
+    justify-content: space-between;
+    align-content: center;
+    padding: 30px 50px;
+}
+
+.quit {
+    display: flex;
+    text-align: center;
+    padding: 10px;
+}
+
+.play-again {
+    display: flex;
+    text-align: center;
+    padding: 10px;
+}
+
+.hide {
+    display: none;
 }
 </style>
