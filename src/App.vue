@@ -135,7 +135,7 @@ export default {
                 card.isShown = ! card.isShown;
             });
 
-            // call resetStars() function
+            this.resetStars();
             this.clickCounter = 0;
             this.matchedCards = [];
             this.openCards = [];
@@ -144,7 +144,7 @@ export default {
         },
         matchCards() {
             if (this.openCards.length === 2) {
-                this.clickCounter++;
+                this.updateScoring();
                 
                 setTimeout(() => {
                     let cardOne = this.openCards[0];
@@ -206,6 +206,24 @@ export default {
             // IF starCount is 1
                 // set message text for this score
         },
+        updateScoring() {
+            this.clickCounter++;
+
+            if (this.clickCounter > 10 && this.stars[0].isShown) {
+                this.stars[0].isShown = ! this.stars[0].isShown;
+            } else if (this.clickCounter > 20 && this.stars[1].isShown) {
+                this.stars[1].isShown = ! this.stars[1].isShown;
+            }
+        },
+        resetStars() {
+            if (! this.stars[0].isShown) {
+                this.stars[0].isShown = ! this.stars[0].isShown;
+            }
+
+            if (! this.stars[1].isShown) {
+                this.stars[1].isShown = ! this.stars[1].isShown;
+            }
+        }
     }
 }
 </script>
