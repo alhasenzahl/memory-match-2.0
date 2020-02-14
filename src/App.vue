@@ -105,11 +105,18 @@ export default {
             matchedCards: [],
             clickCounter: 0,
             showModal: false,
-            message: ''
+            message: '',
+            firstClick: false
+            // Add a firstClick property here
+            // Add data properties for seconds and minutes
         }
     },
     created() {
         this.shuffle(this.cards);
+    },
+    updated() {
+        // On first card click, call function to initiate timer using setInterval()
+        this.initTimer();
     },
     methods: {
         shuffle(array) {
@@ -222,7 +229,48 @@ export default {
             if (! this.stars[1].isShown) {
                 this.stars[1].isShown = ! this.stars[1].isShown;
             }
+        },
+        initTimer() {
+            if (! this.firstClick) {
+                // this.startTimer();
+                this.firstClick = ! this.firstClick;
+                console.log('clicked card');
+            }
+        },
+        startTimer() {
+            // create timer instance using setInterval()
+        },
+        updateTimer() {
+            // use seconds and minutes data properties here to update the clock time
+        },
+        stopTimer() {
+            // stop clock, call it when all of the matches have been found
         }
+        //Function that creates the timer for the game
+        // function gameTimer() {
+        //     timerId = setInterval(function() {
+        //         time += 1;
+        //         displayTimer();
+        //     }, 1000);
+        // }
+
+        //Function that connects/displays the timer to the DOM
+        // function displayTimer() {
+        //     const timer = document.getElementById('stop-watch');
+        //     const minutes = Math.floor(time / 60);
+        //     const seconds = time % 60;
+
+        //     if (seconds < 10) {
+        //         timer.innerHTML = `${minutes}:0${seconds}`;
+        //     } else {
+        //         timer.innerHTML = `${minutes}:${seconds}`;
+        //     }
+        // }
+
+        //Function that stops the clock when the game is over
+        // function stopTimer() {
+        //     clearInterval(timerId);
+        // }
     }
 }
 </script>
