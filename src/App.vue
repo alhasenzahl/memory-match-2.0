@@ -47,8 +47,7 @@
                         <h2 class="modal-title">Game Stats</h2>
                     </div>
                     <div class="modal-main">
-                        <h3 class="modal-main_title">Title</h3>
-                        <p class="modal-main_paragraph">Message</p>
+                        <p class="modal-main_title">{{ message }}</p>
                     </div>
                     <div class="modal-buttons">
                         <button class="quit-game" @click="toggleModal()">Quit</button>
@@ -95,12 +94,18 @@ export default {
             stars: [
                 { symbol: 'fa fa-star', key: 1, isShown: true },
                 { symbol: 'fa fa-star', key: 2, isShown: true },
-                { symbol: 'fa fa-star', key: 3, isShown: true },
+                { symbol: 'fa fa-star', key: 3, isShown: true }
+            ],
+            modalMessage: [
+                { message: 'What a performance! Nice work, Superstar!' },
+                { message: 'Solid performance, keep up the good work!' },
+                { message: 'No worries, there is always next time!' }
             ],
             openCards: [],
             matchedCards: [],
             clickCounter: 0,
-            showModal: false
+            showModal: false,
+            message: ''
         }
     },
     created() {
@@ -140,7 +145,6 @@ export default {
             this.matchedCards = [];
             this.openCards = [];
             // timer goes back to 0
-            // refresh page function call??
         },
         matchCards() {
             if (this.openCards.length === 2) {
@@ -170,15 +174,12 @@ export default {
             }
         },
         wonGame() {
+            // call stopTimer() function
             if (this.matchedCards.length === 16) {
                 setTimeout(() => {
-                    this.showModal = ! this.showModal;
+                    this.toggleModal();
                 }, 1000);
             }
-                // call stopTimer() function
-                // add a 2.5 sec setTimeout to the rest of this
-                    // call showModal() function
-                    // add click listeners to play again and quit buttons on modal
         },
         flipCards(card) {
             if (! card.isOpen && ! card.isShown && ! card.isMatched) {
@@ -190,21 +191,19 @@ export default {
                     card.isShown = ! card.isShown;
                     
                     this.matchCards();
-                    // call starCount() function
                 }
             }
         },
         toggleModal() {
             this.showModal = ! this.showModal;
-            // Change style to display: block to show modal
-            // create variable for time element.innerHTML
 
-            // IF starCount is 3
-                // set message text for this score
-            // IF starCount is 2
-                // set message text for this score
-            // IF starCount is 1
-                // set message text for this score
+            if (this.stars[0].isShown) {
+                this.message = this.modalMessage[0].message;
+            } else if (this.stars[1].isShown) {
+               this.message = this.modalMessage[1].message;
+            } else {
+                this.message = this.modalMessage[2].message;
+            }
         },
         updateScoring() {
             this.clickCounter++;
@@ -402,14 +401,6 @@ h1 {
     display: flex;
     width: 100%;
     justify-content: center;
-}
-
-.modal-main_paragraph {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: 0 10px;
-    text-align: center;
 }
 
 .modal-buttons {
