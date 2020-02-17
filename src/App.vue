@@ -44,7 +44,7 @@
             <div class="modal-body">
                 <div class="modal-body_container">
                     <div class="modal-heading">
-                        <h2 class="modal-title">Game Stats</h2>
+                        <h2 class="modal-title">You Won!</h2>
                     </div>
                     <div class="modal-main">
                         <p class="modal-main_title">{{ message }}</p>
@@ -410,65 +410,55 @@ h1 {
     background: #fff;
     transform: translate(-50%, -50%);
     display: flex;
+    border-radius: 10px;
+    min-height: 400px;
 }
 
 .modal-body_container {
-    display: flex;
     width: 100%;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
 }
 
 .modal-heading {
-    display: flex;
-    justify-content: center;
-    align-content: flex-start;
-    padding: 0 1.5rem;
-    border-bottom: 1px solid gray;
-    width: 100%;
-    order: 1;
+    padding: 30px 0 30px;
 }
 
 .modal-title {
-    display: flex;
-    justify-content: flex-start;
+    text-align: center;
 }
 
 .modal-main {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    width: 100%;
-    order: 2;
-    flex-direction: column;
-    border-bottom: 1px solid gray;
+    padding: 50px 0;
+    margin: auto;
+    display: block;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
 }
 
 .modal-main_title {
     display: flex;
     width: 100%;
     justify-content: center;
+    padding: 0 20px;
 }
 
 .modal-buttons {
-    display: flex;
-    order: 3;
-    justify-content: space-between;
-    align-content: center;
-    padding: 30px 50px;
+    display: block;
+    margin: auto;
+    padding-top: 50px;
+    width: 200px;
 }
 
-.quit {
-    display: flex;
-    text-align: center;
-    padding: 10px;
+.quit-game {
+    width: 75px;
+    margin-right: 50px;
+    padding: 10px 0;
+    border-radius: 8px;
 }
 
 .play-again {
-    display: flex;
-    text-align: center;
-    padding: 10px;
+    width: 75px;
+    padding: 10px 0;
+    border-radius: 8px;
 }
 
 .hide {
