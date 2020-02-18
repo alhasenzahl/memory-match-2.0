@@ -31,7 +31,6 @@
                     v-for="card in cards" 
                     @click="flipCards(card)"
                 >
-                    <!-- <i :class="card.symbol"></i> -->
                     <img
                         :src="card.front"
                         alt=""
@@ -91,23 +90,6 @@ export default {
     data: () => {
         return {
             cards: [
-                // { symbol: 'fa fa-anchor', key: 1, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-anchor', key: 2, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-bomb', key: 3, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-bomb', key: 4, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-bicycle', key: 5, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-bicycle', key: 6, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-diamond', key: 7, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-diamond', key: 8, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-paper-plane-o', key: 9, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-paper-plane-o', key: 10, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-cube', key: 11, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-cube', key: 12, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-leaf', key: 13, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-leaf', key: 14, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-bolt', key: 15, isOpen: false, isShown: false, isMatched: false },
-                // { symbol: 'fa fa-bolt', key: 16, isOpen: false, isShown: false, isMatched: false }
-
                 { back: 'https://lh3.googleusercontent.com/9B6FPA8DEBi0iJRchbNEUQ8LrCzB3ZD2iS3Bo9GiHGkm4ob7uHF2DyzdxQjo8795LoazbJzJpzZDjZrydaOvtauNXDCiNQL76Ig9RrMRJ_OLq-AiTiJP4NqOPULavCiJabJxErkD=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 1, isOpen: false, isShown: false, isMatched: false },
                 { back: 'https://lh3.googleusercontent.com/9B6FPA8DEBi0iJRchbNEUQ8LrCzB3ZD2iS3Bo9GiHGkm4ob7uHF2DyzdxQjo8795LoazbJzJpzZDjZrydaOvtauNXDCiNQL76Ig9RrMRJ_OLq-AiTiJP4NqOPULavCiJabJxErkD=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 2, isOpen: false, isShown: false, isMatched: false },
                 { back: 'https://lh3.googleusercontent.com/FykfF6Xc-dXXiG4IR9cbQa-8aHQp0xZamiFrWkysa7GIWGgnArRIKV0bNvEZgtNkpL3QyVvMVhLLgr-4gH_EwI1ec0rH4jg9dP22BS2ns6mpAQKZgyTeKASFmD825AHMAaFHCxnY=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 3, isOpen: false, isShown: false, isMatched: false },
@@ -533,8 +515,6 @@ h1 {
     - MAKE SURE BUTTONS IN MODAL ARE TABBABLE
     - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
     - RESTYLE MODAL
-    - MAKE GAME BOARD RESPONSIVE TO DIFFERENT SCREEN SIZES
-        - CARD SIZE
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
  */
 
