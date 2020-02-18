@@ -208,7 +208,7 @@ export default {
                     let cardOne = this.openCards[0];
                     let cardTwo = this.openCards[1];
 
-                    if (cardOne.symbol === cardTwo.symbol) {
+                    if (cardOne.back === cardTwo.back) {
                         cardOne.isOpen = ! cardOne.isOpen;
                         cardTwo.isOpen = ! cardTwo.isOpen;
                         cardOne.isMatched = ! cardOne.isMatched;
