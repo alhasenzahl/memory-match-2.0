@@ -22,7 +22,7 @@
                 </div>
             </section>
             <section>
-                <span id="stop-watch">00:00</span>
+                <span id="stop-watch">{{ formattedTime }}</span>
             </section>
             <ul class="deck">
                 <li 
@@ -106,16 +106,28 @@ export default {
             clickCounter: 0,
             showModal: false,
             message: '',
-            firstClick: false
-            // Add a firstClick property here
-            // Add data properties for seconds and minutes
+            firstClick: false,
+            interval: null,
+            time: 0
+        }
+    },
+    computed: {
+        formattedTime() {
+            const time = this.time;
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+
+            if (seconds < 10) {
+                seconds = `0${seconds}`;
+            }
+
+            return `${minutes}:${seconds}`;
         }
     },
     created() {
         this.shuffle(this.cards);
     },
     updated() {
-        // On first card click, call function to initiate timer using setInterval()
         this.initTimer();
     },
     methods: {
@@ -151,7 +163,8 @@ export default {
             this.clickCounter = 0;
             this.matchedCards = [];
             this.openCards = [];
-            // timer goes back to 0
+            this.time = 0;
+            this.interval = null; 
         },
         matchCards() {
             if (this.openCards.length === 2) {
@@ -181,8 +194,8 @@ export default {
             }
         },
         wonGame() {
-            // call stopTimer() function
             if (this.matchedCards.length === 16) {
+                this.stopTimer();
                 setTimeout(() => {
                     this.toggleModal();
                 }, 1000);
@@ -190,7 +203,6 @@ export default {
         },
         flipCards(card) {
             if (! card.isOpen && ! card.isShown && ! card.isMatched) {
-                // Start timer
                 this.openCards.push(card);
 
                 if (this.openCards.length <= 2) {
@@ -232,45 +244,18 @@ export default {
         },
         initTimer() {
             if (! this.firstClick) {
-                // this.startTimer();
+                this.startTimer();
                 this.firstClick = ! this.firstClick;
-                console.log('clicked card');
             }
         },
         startTimer() {
-            // create timer instance using setInterval()
-        },
-        updateTimer() {
-            // use seconds and minutes data properties here to update the clock time
+            this.interval = setInterval(() => {
+                this.time += 1;
+            },1000);
         },
         stopTimer() {
-            // stop clock, call it when all of the matches have been found
+            clearInterval(this.interval);    
         }
-        //Function that creates the timer for the game
-        // function gameTimer() {
-        //     timerId = setInterval(function() {
-        //         time += 1;
-        //         displayTimer();
-        //     }, 1000);
-        // }
-
-        //Function that connects/displays the timer to the DOM
-        // function displayTimer() {
-        //     const timer = document.getElementById('stop-watch');
-        //     const minutes = Math.floor(time / 60);
-        //     const seconds = time % 60;
-
-        //     if (seconds < 10) {
-        //         timer.innerHTML = `${minutes}:0${seconds}`;
-        //     } else {
-        //         timer.innerHTML = `${minutes}:${seconds}`;
-        //     }
-        // }
-
-        //Function that stops the clock when the game is over
-        // function stopTimer() {
-        //     clearInterval(timerId);
-        // }
     }
 }
 </script>
@@ -470,7 +455,6 @@ h1 {
 
 /** CURRENT TO DO LIST:
     - ELIMINATE THE ABILITY TO SCROLL WHEN THE MODAL IS OPEN
-    - FINISH IMPLEMENTING THE TIMER
     - RESTYLE MODAL
     - IMPLEMENT HIAC IMAGES AND GAME DESIGN
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
