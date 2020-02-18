@@ -27,16 +27,33 @@
             <ul class="deck">
                 <li 
                     class="card" 
-                    :class="{
-                        'open': card.isOpen,
-                        'show': card.isShown,
-                        'match': card.isMatched
-                    }" 
-                    :key="card.key" 
+                    :key="card.key"
                     v-for="card in cards" 
                     @click="flipCards(card)"
                 >
-                    <i :class="card.symbol"></i>
+                    <!-- <i :class="card.symbol"></i> -->
+                    <img
+                        :src="card.front"
+                        alt=""
+                        class="card-front"
+                        v-if="!card.isOpen && !card.isShown && !card.isMatched"
+                        :class="{
+                            'open': card.isOpen,
+                            'show': card.isShown,
+                            'match': card.isMatched
+                        }" 
+                    />
+                    <img
+                        :src="card.back"
+                        alt=""
+                        class="card-back"
+                        v-if="card.isOpen || card.isShown || card.isMatched"
+                        :class="{
+                            'open': card.isOpen,
+                            'show': card.isShown,
+                            'match': card.isMatched
+                        }" 
+                    />
                 </li>
             </ul>
         </div>
@@ -74,22 +91,39 @@ export default {
     data: () => {
         return {
             cards: [
-                { symbol: 'fa fa-anchor', key: 1, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-anchor', key: 2, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-bomb', key: 3, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-bomb', key: 4, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-bicycle', key: 5, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-bicycle', key: 6, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-diamond', key: 7, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-diamond', key: 8, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-paper-plane-o', key: 9, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-paper-plane-o', key: 10, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-cube', key: 11, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-cube', key: 12, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-leaf', key: 13, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-leaf', key: 14, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-bolt', key: 15, isOpen: false, isShown: false, isMatched: false },
-                { symbol: 'fa fa-bolt', key: 16, isOpen: false, isShown: false, isMatched: false }
+                // { symbol: 'fa fa-anchor', key: 1, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-anchor', key: 2, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-bomb', key: 3, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-bomb', key: 4, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-bicycle', key: 5, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-bicycle', key: 6, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-diamond', key: 7, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-diamond', key: 8, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-paper-plane-o', key: 9, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-paper-plane-o', key: 10, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-cube', key: 11, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-cube', key: 12, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-leaf', key: 13, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-leaf', key: 14, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-bolt', key: 15, isOpen: false, isShown: false, isMatched: false },
+                // { symbol: 'fa fa-bolt', key: 16, isOpen: false, isShown: false, isMatched: false }
+
+                { back: 'https://lh3.googleusercontent.com/9B6FPA8DEBi0iJRchbNEUQ8LrCzB3ZD2iS3Bo9GiHGkm4ob7uHF2DyzdxQjo8795LoazbJzJpzZDjZrydaOvtauNXDCiNQL76Ig9RrMRJ_OLq-AiTiJP4NqOPULavCiJabJxErkD=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 1, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/9B6FPA8DEBi0iJRchbNEUQ8LrCzB3ZD2iS3Bo9GiHGkm4ob7uHF2DyzdxQjo8795LoazbJzJpzZDjZrydaOvtauNXDCiNQL76Ig9RrMRJ_OLq-AiTiJP4NqOPULavCiJabJxErkD=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 2, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/FykfF6Xc-dXXiG4IR9cbQa-8aHQp0xZamiFrWkysa7GIWGgnArRIKV0bNvEZgtNkpL3QyVvMVhLLgr-4gH_EwI1ec0rH4jg9dP22BS2ns6mpAQKZgyTeKASFmD825AHMAaFHCxnY=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 3, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/FykfF6Xc-dXXiG4IR9cbQa-8aHQp0xZamiFrWkysa7GIWGgnArRIKV0bNvEZgtNkpL3QyVvMVhLLgr-4gH_EwI1ec0rH4jg9dP22BS2ns6mpAQKZgyTeKASFmD825AHMAaFHCxnY=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 4, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/NvmH0fDKfg2lZObnzUZGqAkIa5vploh0WPxqmW4_sEiIujFSXOlWMeOtMk0HZoIqzdlfxztI7shQszpFnBNFdprhaTfap9ATI6CJS-DjGyzqKSBB_ASt3KcfBIKV4OFn2tYixZ-N=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 5, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/NvmH0fDKfg2lZObnzUZGqAkIa5vploh0WPxqmW4_sEiIujFSXOlWMeOtMk0HZoIqzdlfxztI7shQszpFnBNFdprhaTfap9ATI6CJS-DjGyzqKSBB_ASt3KcfBIKV4OFn2tYixZ-N=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 6, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/19-6lBgJH6B62Rbk6sitLrYjsVvowH_o5xvN9uVe7BPMFRT6jVMxcZXQbZ0pJ_TVWZWk6w55q8Gs2nTXcrtN6rvhbjC2BE2Vp2Q_cxUZmfiVyCkc3XuBu8xvHGy8QQAqk7bAP9r9=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 7, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/19-6lBgJH6B62Rbk6sitLrYjsVvowH_o5xvN9uVe7BPMFRT6jVMxcZXQbZ0pJ_TVWZWk6w55q8Gs2nTXcrtN6rvhbjC2BE2Vp2Q_cxUZmfiVyCkc3XuBu8xvHGy8QQAqk7bAP9r9=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 8, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/6wwBs2ahf3fKQrH_xf1v7hztFG6tAB3qGidy16_azm4l4HU_oKFZpdBsnScvlnyK8qCETqO146Fa6W9dCn9W6pFU5n81K9O_LMLEsrFv-o2Ad4-426R9SmprG29yDiam5pI0pmiv=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 9, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/6wwBs2ahf3fKQrH_xf1v7hztFG6tAB3qGidy16_azm4l4HU_oKFZpdBsnScvlnyK8qCETqO146Fa6W9dCn9W6pFU5n81K9O_LMLEsrFv-o2Ad4-426R9SmprG29yDiam5pI0pmiv=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 10, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/JqNaOASQb7NFK16k1MWyTXQVpqVk35Q_VLGctG-BRgvRdJjnKmuC54k8lEbVEvPACXcyGXQkf1Dl3hpgR7KCru3BHESKSVek5d1JDohEKvtZDFcFPP1q999fEKj67Mwb4USM_P51=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 11, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/JqNaOASQb7NFK16k1MWyTXQVpqVk35Q_VLGctG-BRgvRdJjnKmuC54k8lEbVEvPACXcyGXQkf1Dl3hpgR7KCru3BHESKSVek5d1JDohEKvtZDFcFPP1q999fEKj67Mwb4USM_P51=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 12, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/nxz3dmc0yaly7cqmZ7IGTe6_K5QkgdXQCA4sKXMDv2Y5uOQdZps3rpXPtujUuvlG6N9TGGPiYfnvlsucyiATNsUqir-vJCUaQIMvMI_a90_PZLRR4YQGUbrJVHa3V0aVWDp_lv-0=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 13, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/nxz3dmc0yaly7cqmZ7IGTe6_K5QkgdXQCA4sKXMDv2Y5uOQdZps3rpXPtujUuvlG6N9TGGPiYfnvlsucyiATNsUqir-vJCUaQIMvMI_a90_PZLRR4YQGUbrJVHa3V0aVWDp_lv-0=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 14, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/lv5ie9DLFC8_YjELlTCMohS9Nk_BKZypYnMyfTNBnIk2zmphqKaLgAypjyIhIGQkbLKGiKXAQTqqfMShClec5KFUlfF7HE2CceLpGg39i6gpErlZSPaKu6v8tuM6UfDwrfizPgt3=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 15, isOpen: false, isShown: false, isMatched: false },
+                { back: 'https://lh3.googleusercontent.com/lv5ie9DLFC8_YjELlTCMohS9Nk_BKZypYnMyfTNBnIk2zmphqKaLgAypjyIhIGQkbLKGiKXAQTqqfMShClec5KFUlfF7HE2CceLpGg39i6gpErlZSPaKu6v8tuM6UfDwrfizPgt3=w2400', front: 'https://is5-ssl.mzstatic.com/image/thumb/Video22/v4/9f/af/21/9faf21eb-755f-954d-9bee-fc45ece7e452/mzl.irbbcyrq.jpg/268x0w.jpg', key: 16, isOpen: false, isShown: false, isMatched: false }
             ],
             stars: [
                 { symbol: 'fa fa-star', key: 1, isShown: true },
@@ -332,6 +366,18 @@ h1 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
+.deck .card .card-back {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.deck .card .card-front {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
@@ -455,8 +501,11 @@ h1 {
 
 /** CURRENT TO DO LIST:
     - ELIMINATE THE ABILITY TO SCROLL WHEN THE MODAL IS OPEN
+    - MAKE SURE BUTTONS IN MODAL ARE TABBABLE
+    - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
     - RESTYLE MODAL
-    - IMPLEMENT HIAC IMAGES AND GAME DESIGN
+    - IMPLEMENT HIAC backS AND GAME DESIGN
+    - MAKE GAME BOARD RESPONSIVE TO DIFFERENT SCREEN SIZES
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
  */
 
