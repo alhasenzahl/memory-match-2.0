@@ -456,7 +456,8 @@ h1 {
 }
 
 .modal-heading {
-    padding: 3rem 0 3rem;
+    padding: 0;
+    font-size: 2.5rem;
 }
 
 .modal-title {
@@ -464,11 +465,12 @@ h1 {
 }
 
 .modal-main {
-    padding: 5rem 0;
+    padding: 3rem 0;
     margin: auto;
     display: block;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
+    font-size: 1.6rem;
 }
 
 .modal-main_title {
@@ -490,12 +492,14 @@ h1 {
     margin-right: 5rem;
     padding: 1rem 0;
     border-radius: .8rem;
+    font-size: 1.2rem;
 }
 
 .play-again {
     width: 7.5rem;
     padding: 1rem 0;
     border-radius: .8rem;
+    font-size: 1.2rem;
 }
 
 .hide {
@@ -515,7 +519,7 @@ h1 {
     }
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 600px) {
    .deck {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     } 
