@@ -299,8 +299,10 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 html {
     box-sizing: border-box;
+    font-size: 10px;
 }
 
 *,
@@ -334,6 +336,9 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     color: white;
+    font-size: 3rem;
+    padding: 0 2.7rem;
+    text-align: center;
 }
 
 /*
@@ -341,43 +346,38 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    max-width: 66rem;
+    min-height: 68rem;
+    width: calc(100% - 2rem);
     background: linear-gradient(160deg, #CC281D 0%, #FF3424 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    padding: 2rem 0;
+    border-radius: 1rem;
+    box-shadow: 1.2rem 1.5rem 2rem 0 rgba(46, 61, 73, 0.5);
+    display: grid;
+    padding-inline-start: 0;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem 0;
     margin: 0 0 3em;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    max-height: 12.5rem;
+    max-width: 12.5rem;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
-    border-radius: 8px;
+    border-radius: .8rem;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    justify-self: center;
+    align-self: center;
+    box-shadow: .5rem .2rem 2rem 0 rgba(46, 61, 73, 0.5);
 }
 
-.deck .card .card-back {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
+.deck .card .card-back,
 .deck .card .card-front {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: .8rem;
 }
 
 
@@ -386,20 +386,27 @@ h1 {
 
 /*
  * Styles for the Score Panel
+
+VALUES TO REMEMBER:
+
+.SCORE-PANEL -- MAX-WIDTH: 345PX
+
  */
 
 .score-panel {
     text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 1rem;
     color: white;
+    padding: 0 2rem;
+    font-size: 1.5rem;
 }
 
 .score-panel .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 .5rem 0 0;
 }
 
 .score-panel .restart {
@@ -416,10 +423,11 @@ h1 {
 
 #stop-watch {
     color: white;
+    font-size: 1.5rem;
 }
 
 .timer-wrap {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 
@@ -436,14 +444,14 @@ h1 {
 
 .modal-body {
     position: relative;
-    width: 400px;
+    width: 400px; /** MAKE RESPONSIVE */
     top: 50%;
     left: 50%;
     background: #fff;
     transform: translate(-50%, -50%);
     display: flex;
-    border-radius: 10px;
-    min-height: 400px;
+    border-radius: 10px; /** MAKE RESPONSIVE */
+    min-height: 400px; /** MAKE RESPONSIVE */
 }
 
 .modal-body_container {
@@ -451,7 +459,7 @@ h1 {
 }
 
 .modal-heading {
-    padding: 30px 0 30px;
+    padding: 30px 0 30px; /** MAKE RESPONSIVE */
 }
 
 .modal-title {
@@ -459,7 +467,7 @@ h1 {
 }
 
 .modal-main {
-    padding: 50px 0;
+    padding: 50px 0; /** MAKE RESPONSIVE */
     margin: auto;
     display: block;
     border-top: 1px solid grey;
@@ -470,27 +478,27 @@ h1 {
     display: flex;
     width: 100%;
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 20px; /** MAKE RESPONSIVE */
 }
 
 .modal-buttons {
     display: block;
     margin: auto;
-    padding-top: 50px;
-    width: 200px;
+    padding-top: 50px; /** MAKE RESPONSIVE */
+    width: 200px; /** MAKE RESPONSIVE */
 }
 
 .quit-game {
-    width: 75px;
-    margin-right: 50px;
-    padding: 10px 0;
-    border-radius: 8px;
+    width: 75px; /** MAKE RESPONSIVE */
+    margin-right: 50px; /** MAKE RESPONSIVE */
+    padding: 10px 0; /** MAKE RESPONSIVE */
+    border-radius: 8px; /** MAKE RESPONSIVE */
 }
 
 .play-again {
-    width: 75px;
-    padding: 10px 0;
-    border-radius: 8px;
+    width: 75px; /** MAKE RESPONSIVE */
+    padding: 10px 0; /** MAKE RESPONSIVE */
+    border-radius: 8px; /** MAKE RESPONSIVE */
 }
 
 .hide {
@@ -500,12 +508,31 @@ h1 {
 
 
 
+@media only screen and (min-width: 480px) {
+   .deck {
+        grid-template-columns: 1fr 1fr 1fr;
+    } 
+}
+
+@media only screen and (min-width: 700px) {
+   .deck {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    } 
+}
 /** CURRENT TO DO LIST:
     - ELIMINATE THE ABILITY TO SCROLL WHEN THE MODAL IS OPEN
     - MAKE SURE BUTTONS IN MODAL ARE TABBABLE
     - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
     - RESTYLE MODAL
     - MAKE GAME BOARD RESPONSIVE TO DIFFERENT SCREEN SIZES
+        - DECK SIZE
+        - CARD SIZE
+        - DECK GRID SIZE AND HOW CARDS ARE LAID OUT
+        - BACKGROUND IMAGE
+        - TEXT/ICON SIZE AND PLACEMENT
+        - MODAL SIZE, PLACEMENT, TEXT SIZE, BUTTON PLACEMENT
+
+        - PERHAPS TRY USING GRID FOR THE CARD GRID/LAYOUT PART AND THE SCOREBOARD AREA??
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
  */
 
