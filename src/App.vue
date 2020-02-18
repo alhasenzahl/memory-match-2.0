@@ -386,16 +386,12 @@ h1 {
 
 /*
  * Styles for the Score Panel
-
-VALUES TO REMEMBER:
-
-.SCORE-PANEL -- MAX-WIDTH: 345PX
-
  */
 
 .score-panel {
     text-align: left;
     width: 100%;
+    max-width: 34.5rem;
     margin-bottom: 1rem;
     color: white;
     padding: 0 2rem;
@@ -444,14 +440,15 @@ VALUES TO REMEMBER:
 
 .modal-body {
     position: relative;
-    width: 400px; /** MAKE RESPONSIVE */
+    max-width: 40rem;
+    width: calc(100% - 2rem);
     top: 50%;
     left: 50%;
     background: #fff;
     transform: translate(-50%, -50%);
     display: flex;
-    border-radius: 10px; /** MAKE RESPONSIVE */
-    min-height: 400px; /** MAKE RESPONSIVE */
+    border-radius: 1rem;
+    min-height: 35rem;
 }
 
 .modal-body_container {
@@ -459,7 +456,7 @@ VALUES TO REMEMBER:
 }
 
 .modal-heading {
-    padding: 30px 0 30px; /** MAKE RESPONSIVE */
+    padding: 3rem 0 3rem;
 }
 
 .modal-title {
@@ -467,7 +464,7 @@ VALUES TO REMEMBER:
 }
 
 .modal-main {
-    padding: 50px 0; /** MAKE RESPONSIVE */
+    padding: 5rem 0;
     margin: auto;
     display: block;
     border-top: 1px solid grey;
@@ -478,27 +475,27 @@ VALUES TO REMEMBER:
     display: flex;
     width: 100%;
     justify-content: center;
-    padding: 0 20px; /** MAKE RESPONSIVE */
+    padding: 0 2rem;
 }
 
 .modal-buttons {
     display: block;
     margin: auto;
-    padding-top: 50px; /** MAKE RESPONSIVE */
-    width: 200px; /** MAKE RESPONSIVE */
+    padding-top: 5rem;
+    width: 20rem;
 }
 
 .quit-game {
-    width: 75px; /** MAKE RESPONSIVE */
-    margin-right: 50px; /** MAKE RESPONSIVE */
-    padding: 10px 0; /** MAKE RESPONSIVE */
-    border-radius: 8px; /** MAKE RESPONSIVE */
+    width: 7.5rem;
+    margin-right: 5rem;
+    padding: 1rem 0;
+    border-radius: .8rem;
 }
 
 .play-again {
-    width: 75px; /** MAKE RESPONSIVE */
-    padding: 10px 0; /** MAKE RESPONSIVE */
-    border-radius: 8px; /** MAKE RESPONSIVE */
+    width: 7.5rem;
+    padding: 1rem 0;
+    border-radius: .8rem;
 }
 
 .hide {
@@ -512,6 +509,10 @@ VALUES TO REMEMBER:
    .deck {
         grid-template-columns: 1fr 1fr 1fr;
     } 
+
+    .score-panel {
+        padding: 0;
+    }
 }
 
 @media only screen and (min-width: 700px) {
@@ -525,14 +526,7 @@ VALUES TO REMEMBER:
     - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
     - RESTYLE MODAL
     - MAKE GAME BOARD RESPONSIVE TO DIFFERENT SCREEN SIZES
-        - DECK SIZE
         - CARD SIZE
-        - DECK GRID SIZE AND HOW CARDS ARE LAID OUT
-        - BACKGROUND IMAGE
-        - TEXT/ICON SIZE AND PLACEMENT
-        - MODAL SIZE, PLACEMENT, TEXT SIZE, BUTTON PLACEMENT
-
-        - PERHAPS TRY USING GRID FOR THE CARD GRID/LAYOUT PART AND THE SCOREBOARD AREA??
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
  */
 
