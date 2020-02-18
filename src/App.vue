@@ -2,7 +2,7 @@
     <div>
         <div class="container">
             <header>
-                <h1>Matching Game</h1>
+                <h1>Hell in a Cell Memory Match</h1>
             </header>
 
             <section class="score-panel">
@@ -21,7 +21,7 @@
                     <i class="fa fa-repeat" @click="restartGame()"></i>
                 </div>
             </section>
-            <section>
+            <section class="timer-wrap">
                 <span id="stop-watch">{{ formattedTime }}</span>
             </section>
             <ul class="deck">
@@ -224,7 +224,7 @@ export default {
                     }
 
                     this.openCards = [];
-                }, 1000);
+                }, 1500);
             }
         },
         wonGame() {
@@ -318,7 +318,8 @@ body {
 }
 
 body {
-    background: #ffffff url('assets/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background-image: url('https://1.bp.blogspot.com/-qTwY85_O668/WAnKTDSTvUI/AAAAAAAAB2A/U3VL7wXsvJESu1CSJ304m7C8WQV7YZPzACLcB/s1600/1.JPG');
+    background-size: cover;
     font-family: 'Coda', cursive;
 }
 
@@ -332,6 +333,7 @@ body {
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    color: white;
 }
 
 /*
@@ -341,7 +343,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, #CC281D 0%, #FF3424 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -378,21 +380,9 @@ h1 {
     border-radius: 8px;
 }
 
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
-}
 
-.deck .card.show {
-    font-size: 33px;
-}
 
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
-}
+
 
 /*
  * Styles for the Score Panel
@@ -402,6 +392,7 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    color: white;
 }
 
 .score-panel .stars {
@@ -414,11 +405,21 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    color: white;
 }
 
 .star-icon {
     list-style: none;
     display: inline-block;
+    color: white;
+}
+
+#stop-watch {
+    color: white;
+}
+
+.timer-wrap {
+    margin-bottom: 20px;
 }
 
 
@@ -504,7 +505,6 @@ h1 {
     - MAKE SURE BUTTONS IN MODAL ARE TABBABLE
     - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
     - RESTYLE MODAL
-    - IMPLEMENT HIAC backS AND GAME DESIGN
     - MAKE GAME BOARD RESPONSIVE TO DIFFERENT SCREEN SIZES
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
  */
