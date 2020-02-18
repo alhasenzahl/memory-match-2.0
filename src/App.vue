@@ -380,6 +380,10 @@ h1 {
     border-radius: .8rem;
 }
 
+.deck .card .card-front {
+    filter: grayscale(100%) contrast(70%);
+}
+
 
 
 
