@@ -244,12 +244,24 @@ export default {
             if (this.stars[0].isShown) {
                 this.message = this.modalMessage[0].message;
             } else if (this.stars[1].isShown) {
-               this.message = this.modalMessage[1].message;
+                this.message = this.modalMessage[1].message;
             } else {
                 this.message = this.modalMessage[2].message;
             }
 
             this.modalFocus();
+
+            const escModal = (e) => {
+                if (e.keyCode === 27 && this.showModal) {
+                    this.showModal = ! this.showModal;
+                }
+            };
+
+            document.addEventListener('keyup', escModal);
+
+            this.$once('hook:destroyed', () => {
+                document.removeEventListener('keydown', escModal);
+            });
         },
         updateScoring() {
             this.clickCounter++;
@@ -548,7 +560,6 @@ h1 {
     - MODAL A11Y ADDITIONS
         - ELIMINATE THE ABILITY TO SCROLL WHEN THE MODAL IS OPEN
         - THE ABILITY TO CLICK ON THE MODAL BACKGROUND TO EXIT MODAL (SAME AS HITTING QUIT GAME)
-        - ADDING FUNCTIONALITY LIKE ABOVE FOR ESC KEY TO EXIT MODAL/QUIT GAME
     - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
     - RESTYLE MODAL
         - ADD GAME INFORMATION TO WINNING MESSAGE?
