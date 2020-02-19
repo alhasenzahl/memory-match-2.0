@@ -165,6 +165,7 @@ export default {
 
             if (this.showModal) {
                 this.showModal = ! this.showModal;
+                this.shuffle(this.cards);
             }
 
             this.openCards.forEach((card) => {
