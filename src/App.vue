@@ -59,7 +59,7 @@
         </div>
         <div class="modal-background" v-if="showModal">
             <div class="modal-body">
-                <div class="modal-body_container">
+                <div class="modal-body_container" ref="modal" @keydown.tab="focusTrap">
                     <div class="modal-heading">
                         <h2 class="modal-title">You Won!</h2>
                     </div>
@@ -67,8 +67,8 @@
                         <p class="modal-main_title">{{ message }}</p>
                     </div>
                     <div class="modal-buttons">
-                        <button class="quit-game" @click="toggleModal()">Quit</button>
-                        <button class="play-again" @click="restartGame()">Play Again</button>
+                        <button class="quit-game js-modal-button" ref="modalButton" @click="toggleModal()">Quit</button>
+                        <button class="play-again js-modal-button" @click="restartGame()">Play Again</button>
                     </div>
                 </div>
             </div>
@@ -247,6 +247,8 @@ export default {
             } else {
                 this.message = this.modalMessage[2].message;
             }
+
+            this.modalFocus();
         },
         updateScoring() {
             this.clickCounter++;
@@ -273,6 +275,28 @@ export default {
         },
         stopTimer() {
             clearInterval(this.interval);    
+        },
+        modalFocus() {
+            this.nextTick().then(() => {
+                console.log(this.$refs.modalButton);
+            });
+        },
+        focusTrap(e) {
+            const buttons = this.$refs.modal.querySelectorAll('.js-modal-button');
+            const first = buttons[0];
+            const last = buttons[buttons.length - 1];
+
+            console.log(buttons);
+
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    last.focus();
+                    e.preventDefault();
+                }
+            } else if (document.activeElement === last) {
+                first.focus();
+                e.preventDefault();
+            }
         }
     }
 }
