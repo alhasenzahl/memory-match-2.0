@@ -143,9 +143,6 @@ export default {
     created() {
         this.shuffle(this.cards);
     },
-    updated() {
-        this.initTimer();
-    },
     methods: {
         shuffle(array) {
             let currentIndex = array.length, temporaryValue, randomIndex;
@@ -161,6 +158,10 @@ export default {
             return array;
         },
         restartGame() {
+            if (this.matchedCards.length !== 16) {
+                this.stopTimer();
+            }
+
             if (this.showModal) {
                 this.showModal = ! this.showModal;
             }
@@ -180,7 +181,8 @@ export default {
             this.matchedCards = [];
             this.openCards = [];
             this.time = 0;
-            this.interval = null; 
+            this.interval = null;
+            this.firstClick = false;
         },
         matchCards() {
             if (this.openCards.length === 2) {
@@ -218,6 +220,11 @@ export default {
             }
         },
         flipCards(card) {
+            if (! this.firstClick) {
+                this.startTimer();
+                this.firstClick = ! this.firstClick;
+            }
+
             if (! card.isOpen && ! card.isShown && ! card.isMatched) {
                 this.openCards.push(card);
 
@@ -258,12 +265,12 @@ export default {
                 this.stars[1].isShown = ! this.stars[1].isShown;
             }
         },
-        initTimer() {
-            if (! this.firstClick) {
-                this.startTimer();
-                this.firstClick = ! this.firstClick;
-            }
-        },
+        // initTimer() {
+        //     if (! this.firstClick) {
+        //         this.startTimer();
+        //         this.firstClick = ! this.firstClick;
+        //     }
+        // },
         startTimer() {
             this.interval = setInterval(() => {
                 this.time += 1;
@@ -395,6 +402,9 @@ h1 {
     float: right;
     cursor: pointer;
     color: white;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
 }
 
 .star-icon {
@@ -411,6 +421,7 @@ h1 {
 .timer-wrap {
     margin-bottom: 2rem;
 }
+
 
 
 
@@ -514,7 +525,11 @@ h1 {
     - ELIMINATE THE ABILITY TO SCROLL WHEN THE MODAL IS OPEN
     - MAKE SURE BUTTONS IN MODAL ARE TABBABLE
     - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
+        - MAKE CARDS A BUTTON OR LINK
+        - MAKE RESTART ICON A BUTTON
     - RESTYLE MODAL
+        - ADD GAME INFORMATION TO WINNING MESSAGE?
+    - BREAK OUT CODE INTO COMPONENTS?
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
  */
 
