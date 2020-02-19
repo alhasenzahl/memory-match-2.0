@@ -277,16 +277,12 @@ export default {
             clearInterval(this.interval);    
         },
         modalFocus() {
-            this.nextTick().then(() => {
-                console.log(this.$refs.modalButton);
-            });
+            this.$nextTick(() => this.$refs.modalButton.focus());
         },
         focusTrap(e) {
             const buttons = this.$refs.modal.querySelectorAll('.js-modal-button');
             const first = buttons[0];
             const last = buttons[buttons.length - 1];
-
-            console.log(buttons);
 
             if (e.shiftKey) {
                 if (document.activeElement === first) {
