@@ -17,9 +17,9 @@
                 </ul>
                 <span class="moves">{{ clickCounter }}</span> Moves
 
-                <div class="restart">
-                    <i class="fa fa-repeat" @click="restartGame()"></i>
-                </div>
+                <button class="restart" @click="restartGame()">
+                    <i class="fa fa-repeat"></i>
+                </button>
             </section>
             <section class="timer-wrap">
                 <span id="stop-watch">{{ formattedTime }}</span>
@@ -29,30 +29,31 @@
                     class="card" 
                     :key="card.key"
                     v-for="card in cards" 
-                    @click="flipCards(card)"
                 >
-                    <img
-                        :src="card.front"
-                        alt=""
-                        class="card-front"
-                        v-if="!card.isOpen && !card.isShown && !card.isMatched"
-                        :class="{
-                            'open': card.isOpen,
-                            'show': card.isShown,
-                            'match': card.isMatched
-                        }" 
-                    />
-                    <img
-                        :src="card.back"
-                        alt=""
-                        class="card-back"
-                        v-if="card.isOpen || card.isShown || card.isMatched"
-                        :class="{
-                            'open': card.isOpen,
-                            'show': card.isShown,
-                            'match': card.isMatched
-                        }" 
-                    />
+                    <button class="card-button" @click="flipCards(card)">
+                        <img
+                            :src="card.front"
+                            alt=""
+                            class="card-front"
+                            v-if="!card.isOpen && !card.isShown && !card.isMatched"
+                            :class="{
+                                'open': card.isOpen,
+                                'show': card.isShown,
+                                'match': card.isMatched
+                            }" 
+                        />
+                        <img
+                            :src="card.back"
+                            alt=""
+                            class="card-back"
+                            v-if="card.isOpen || card.isShown || card.isMatched"
+                            :class="{
+                                'open': card.isOpen,
+                                'show': card.isShown,
+                                'match': card.isMatched
+                            }" 
+                        />
+                    </button>
                 </li>
             </ul>
         </div>
@@ -265,12 +266,6 @@ export default {
                 this.stars[1].isShown = ! this.stars[1].isShown;
             }
         },
-        // initTimer() {
-        //     if (! this.firstClick) {
-        //         this.startTimer();
-        //         this.firstClick = ! this.firstClick;
-        //     }
-        // },
         startTimer() {
             this.interval = setInterval(() => {
                 this.time += 1;
@@ -371,6 +366,13 @@ h1 {
 
 .deck .card .card-front {
     filter: grayscale(100%) contrast(70%);
+}
+
+.deck .card-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
 
