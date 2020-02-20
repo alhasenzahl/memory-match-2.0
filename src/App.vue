@@ -57,7 +57,7 @@
                 </li>
             </ul>
         </div>
-        <div class="modal-background" v-if="showModal">
+        <div class="modal-background"  @click="clickAway" v-if="showModal">
             <div class="modal-body">
                 <div class="modal-body_container" ref="modal" @keydown.tab="focusTrap">
                     <div class="modal-heading">
@@ -441,6 +441,9 @@ export default {
                 first.focus();
                 e.preventDefault();
             }
+        },
+        clickAway() {
+            this.showModal = ! this.showModal;
         }
     }
 }
@@ -700,6 +703,7 @@ h1 {
     - RESTYLE MODAL
         - ADD GAME INFORMATION TO WINNING MESSAGE?
     - BREAK OUT CODE INTO COMPONENTS?
+        - THE GETTING ALL OF THE FUNCTION TO PASS FROM PARENT TO CHILD AND ICE VERSA IS GOING TO BE THE CHALLENGE HERE
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
     - ADD SERVICE WORKER FOR OFFLINE PLAY?
  */
