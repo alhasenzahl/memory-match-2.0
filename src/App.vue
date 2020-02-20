@@ -12,12 +12,12 @@
                         :key="star.key"
                         v-for="star in stars"
                     >
-                        <i :class="star.symbol" v-if="star.isShown"></i>
+                        <i class="fa fa-star" v-if="star.isShown"></i>
                     </li>
                 </ul>
                 <span class="moves">{{ clickCounter }}</span> Moves
 
-                <button class="restart" @click="restartGame()">
+                <button class="restart" @click="restartGame">
                     <i class="fa fa-repeat"></i>
                 </button>
             </section>
@@ -67,8 +67,8 @@
                         <p class="modal-main_title">{{ message }}</p>
                     </div>
                     <div class="modal-buttons">
-                        <button class="quit-game js-modal-button" ref="modalButton" @click="toggleModal()">Quit</button>
-                        <button class="play-again js-modal-button" @click="restartGame()">Play Again</button>
+                        <button class="quit-game js-modal-button" ref="modalButton" @click="showModal = ! showModal">Quit</button>
+                        <button class="play-again js-modal-button" @click="restartGame">Play Again</button>
                     </div>
                 </div>
             </div>
@@ -84,9 +84,9 @@
 export default {
     name: 'App',
     // components: {
-    //     Star
-    //     // Modal,
-    //     // Card
+        // Star
+        // Modal
+        // Card
     // },
     data: () => {
         return {
@@ -238,17 +238,14 @@ export default {
             ],
             stars: [
                 {
-                    symbol: 'fa fa-star',
                     key: 1,
                     isShown: true
                 },
                 {
-                    symbol: 'fa fa-star',
                     key: 2,
                     isShown: true
                 },
                 {
-                    symbol: 'fa fa-star',
                     key: 3,
                     isShown: true
                 }
@@ -299,13 +296,11 @@ export default {
             return array;
         },
         restartGame() {
-            if (this.matchedCards.length !== 16) {
-                this.stopTimer();
-            }
-
             if (this.showModal) {
                 this.showModal = ! this.showModal;
                 this.shuffle(this.cards);
+            } else {
+                this.stopTimer();
             }
 
             this.openCards.forEach((card) => {
@@ -357,7 +352,7 @@ export default {
             if (this.matchedCards.length === 16) {
                 this.stopTimer();
                 setTimeout(() => {
-                    this.toggleModal();
+                    this.openModal();
                 }, 1000);
             }
         },
@@ -378,7 +373,7 @@ export default {
                 }
             }
         },
-        toggleModal() {
+        openModal() {
             this.showModal = ! this.showModal;
 
             if (this.stars[0].isShown) {
@@ -700,11 +695,13 @@ h1 {
     - MODAL A11Y ADDITIONS
         - ELIMINATE THE ABILITY TO SCROLL WHEN THE MODAL IS OPEN
         - THE ABILITY TO CLICK ON THE MODAL BACKGROUND TO EXIT MODAL (SAME AS HITTING QUIT GAME)
-    - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL?
+    - ARE THERE WAYS TO MAKE THE GAME TABBABLE, MORE ACCESSIBLE OVERALL? 
+        - SEE ABOVE LIST
     - RESTYLE MODAL
         - ADD GAME INFORMATION TO WINNING MESSAGE?
     - BREAK OUT CODE INTO COMPONENTS?
     - ONCE ALL FUNCTIONALITY WORKS RIGHT, MAKE IT MORE EFFICIENT!
+    - ADD SERVICE WORKER FOR OFFLINE PLAY?
  */
 
 </style>
