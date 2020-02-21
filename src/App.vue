@@ -57,7 +57,7 @@
                 </li>
             </ul>
         </div>
-        <div class="modal-background"  @click="clickAway" v-if="showModal">
+        <div class="modal-background" v-if="showModal">
             <div class="modal-body">
                 <div class="modal-body_container" ref="modal" @keydown.tab="focusTrap">
                     <div class="modal-heading">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="modal-buttons">
                         <button class="quit-game js-modal-button" ref="modalButton" @click="showModal = ! showModal">Quit</button>
-                        <button class="play-again js-modal-button" @click="restartGame">Play Again</button>
+                        <button class="play-again js-modal-button" @click="restartGame()">Play Again</button>
                     </div>
                 </div>
             </div>
@@ -296,11 +296,13 @@ export default {
             return array;
         },
         restartGame() {
+            if (this.matchedCards.length !== 16) {
+                this.stopTimer();
+            }
+
             if (this.showModal) {
                 this.showModal = ! this.showModal;
                 this.shuffle(this.cards);
-            } else {
-                this.stopTimer();
             }
 
             this.openCards.forEach((card) => {
@@ -442,9 +444,6 @@ export default {
                 e.preventDefault();
             }
         },
-        clickAway() {
-            this.showModal = ! this.showModal;
-        }
     }
 }
 </script>
